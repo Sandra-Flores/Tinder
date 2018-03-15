@@ -23,6 +23,8 @@ class CardsViewController: UIViewController {
     
     var swippingRight = false
     var swippingLeft = false
+
+    var onTapGesture = UITapGestureRecognizer()
     
     @IBOutlet weak var candidateImageView: UIImageView!
     @IBOutlet weak var actionButtonsImageView: UIImageView!
@@ -33,15 +35,14 @@ class CardsViewController: UIViewController {
         positiveDivisor = (view.frame.width / 2) / 0.61 // 0.61 = 35 degrees
         negativeDivisor = (view.frame.width / 2) / -0.61 // 0.61 = 35 degrees
         
-        imageOffset = 600
+        imageOffset = 600 // how far to disappear the image off the screen
         cardInitialCenter = candidateImageView.center
         imageRight = CGPoint(x: candidateImageView.center.x + imageOffset ,y: candidateImageView.center.y)
         imageLeft = CGPoint(x: candidateImageView.center.x - imageOffset ,y: candidateImageView.center.y)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        onTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.goToProfile(sender:)))
+        candidateImageView.addGestureRecognizer(onTapGesture)
+        candidateImageView.isUserInteractionEnabled = true
     }
     
     @IBAction func didPanImage(_ sender: UIPanGestureRecognizer) {
@@ -101,6 +102,20 @@ class CardsViewController: UIViewController {
         } // else if
         
     } // didPanImage
+    
+    @objc func goToProfile(sender: UITapGestureRecognizer){
+        performSegue(withIdentifier: "segueToProfile", sender: self)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("going to segue")
+    }
+    
     
     /*
     // MARK: - Navigation

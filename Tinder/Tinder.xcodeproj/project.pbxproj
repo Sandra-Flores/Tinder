@@ -14,6 +14,7 @@
 		5407C6D4205A4CE400781DF0 /* TinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407C6D3205A4CE400781DF0 /* TinderTests.swift */; };
 		5407C6DF205A4CE500781DF0 /* TinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407C6DE205A4CE500781DF0 /* TinderUITests.swift */; };
 		5407C6EE205A525600781DF0 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407C6ED205A525600781DF0 /* CardsViewController.swift */; };
+		54D0BBDD205AED1C0071A411 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D0BBDC205AED1C0071A411 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		5407C6DE205A4CE500781DF0 /* TinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderUITests.swift; sourceTree = "<group>"; };
 		5407C6E0205A4CE500781DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5407C6ED205A525600781DF0 /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		54D0BBDC205AED1C0071A411 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				5407C6ED205A525600781DF0 /* CardsViewController.swift */,
+				54D0BBDC205AED1C0071A411 /* ProfileViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D0BBDD205AED1C0071A411 /* ProfileViewController.swift in Sources */,
 				5407C6EE205A525600781DF0 /* CardsViewController.swift in Sources */,
 				5407C6BF205A4CE400781DF0 /* AppDelegate.swift in Sources */,
 			);
