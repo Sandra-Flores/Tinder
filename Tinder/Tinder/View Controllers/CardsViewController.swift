@@ -6,8 +6,7 @@
 //  Copyright © 2018 Diego Medina. All rights reserved.
 //
 
-// TODO: KEEP ADDING THE TAPGESTURERECOGNIZER TO THE ACTIONBUTTONS
-// https://www.youtube.com/watch?v=F5Rh4kDongo
+// TODO:
 
 import UIKit
 
@@ -31,7 +30,7 @@ class CardsViewController: UIViewController {
         positiveDivisor = (view.frame.width / 2) / 0.61 // 0.61 = 35 degrees
         negativeDivisor = (view.frame.width / 2) / -0.61 // 0.61 = 35 degrees
         
-        imageOffset = 350
+        imageOffset = 600
         cardInitialCenter = candidateImageView.center
         imageRight = CGPoint(x: candidateImageView.center.x + imageOffset ,y: candidateImageView.center.y)
         imageLeft = CGPoint(x: candidateImageView.center.x - imageOffset ,y: candidateImageView.center.y)
@@ -72,26 +71,28 @@ class CardsViewController: UIViewController {
                 cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/trueDivisor)
             }
             
+
+            
         } else if sender.state == .ended {
             
-            if( velocity.x > 0 ){ // moving right
+            if( translation.x > 50 ){ // move right
                 
                 UIView.animate(withDuration: 0.3) {
                     self.candidateImageView.center = self.imageRight
                 }
                 
                 // set card back to initial state
-                self.candidateImageView.transform = CGAffineTransform.identity
-                self.candidateImageView.center = cardInitialCenter
+//                self.candidateImageView.transform = CGAffineTransform.identity
+//                self.candidateImageView.center = cardInitialCenter
                 
-            }else{ // moving left
+            }else{ // move left
                 UIView.animate(withDuration: 0.3) {
                     self.candidateImageView.center = self.imageLeft
                 }
                 
                 // set card back to initial state
-                self.candidateImageView.transform = CGAffineTransform.identity
-                self.candidateImageView.center = cardInitialCenter
+//                self.candidateImageView.transform = CGAffineTransform.identity
+//                self.candidateImageView.center = cardInitialCenter
             }
             
         } // else if
