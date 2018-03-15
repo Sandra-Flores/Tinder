@@ -93,6 +93,7 @@
                     <connections>
                         <outlet property="candidateImageView" destination="Jko-Tl-GP3" id="EsK-6v-ft8"/>
                         <outlet property="navBar" destination="4wY-ib-3qt" id="6oe-YO-W18"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueToHomePage" id="RuZ-Em-DEU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7e-1b-KTG" userLabel="First Responder" sceneMemberID="firstResponder"/>

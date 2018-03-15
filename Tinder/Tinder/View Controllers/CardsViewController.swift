@@ -6,7 +6,7 @@
 //  Copyright © 2018 Diego Medina. All rights reserved.
 //
 
-// TODO:
+// TODO: FIX GO TO HOMEPAGE SEGUE
 
 import UIKit
 
@@ -114,6 +114,11 @@ class CardsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("going to segue")
+        
+        if segue.identifier == "goToSegue"{
+            let destination = ProfileViewController()
+            destination.imageURL = URL(string: "GOOGLE.COM")
+        }
     }
     
     

@@ -13,12 +13,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var navBar: UIImageView!
     @IBOutlet weak var candidateImageView: UIImageView!
     
-    
+    var imageURL: URL!
+    var onTapGesture = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        onTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.goToHomePage(sender:)))
+        candidateImageView.addGestureRecognizer(onTapGesture)
+        candidateImageView.isUserInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +29,16 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @objc func goToHomePage(sender: UITapGestureRecognizer){
+        performSegue(withIdentifier: "segueToHomePage", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("going to segue")
+        
+        if segue.identifier == "goToHomePage"{
+        }
+    }
 
     /*
     // MARK: - Navigation
