@@ -8,7 +8,6 @@
 
 // TODO: KEEP ADDING THE TAPGESTURERECOGNIZER TO THE ACTIONBUTTONS
 // https://www.youtube.com/watch?v=F5Rh4kDongo
-// https://stackoverflow.com/questions/27880607/how-to-assign-an-action-for-uiimageview-object-in-swift
 
 import UIKit
 
@@ -21,6 +20,7 @@ class CardsViewController: UIViewController {
     
     var positiveDivisor: CGFloat!
     var negativeDivisor: CGFloat!
+    var trueDivisor: CGFloat!
     
     @IBOutlet weak var candidateImageView: UIImageView!
     @IBOutlet weak var actionButtonsImageView: UIImageView!
@@ -35,9 +35,6 @@ class CardsViewController: UIViewController {
         cardInitialCenter = candidateImageView.center
         imageRight = CGPoint(x: candidateImageView.center.x + imageOffset ,y: candidateImageView.center.y)
         imageLeft = CGPoint(x: candidateImageView.center.x - imageOffset ,y: candidateImageView.center.y)
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(resetCard(sender:)))
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,52 +49,54 @@ class CardsViewController: UIViewController {
         let xFromCenter = cardView.center.x - view.center.x
         let velocity = sender.velocity(in: view)
         
-        
         if sender.state == .began {
             cardInitialCenter = candidateImageView.center
             
+            // set the direction the card with rotate towards
+            if velocity.y < 0 {
+                trueDivisor = positiveDivisor
+            }
+            else{
+                trueDivisor = negativeDivisor
+            }
+            
         } else if sender.state == .changed {
             
-            if velocity.y < 0{
+            if velocity.y < 0 && velocity.x < 0{
                 candidateImageView.center = CGPoint(x: cardInitialCenter.x + translation.x, y: cardInitialCenter.y)
                 cardView.center = CGPoint(x: view.center.x + translation.x , y: cardView.center.y + translation.y)
-                cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/positiveDivisor)
+                cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/trueDivisor)
             }else{
                 candidateImageView.center = CGPoint(x: cardInitialCenter.x + translation.x, y: cardInitialCenter.y)
                 cardView.center = CGPoint(x: view.center.x + translation.x , y: cardView.center.y + translation.y)
-                cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/negativeDivisor)
+                cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/trueDivisor)
             }
             
         } else if sender.state == .ended {
-            
-            
             
             if( velocity.x > 0 ){ // moving right
                 
                 UIView.animate(withDuration: 0.3) {
                     self.candidateImageView.center = self.imageRight
                 }
-                cardView.removeFromSuperview()
-
+                
+                // set card back to initial state
+                self.candidateImageView.transform = CGAffineTransform.identity
+                self.candidateImageView.center = cardInitialCenter
                 
             }else{ // moving left
                 UIView.animate(withDuration: 0.3) {
                     self.candidateImageView.center = self.imageLeft
                 }
-                cardView.removeFromSuperview()
                 
+                // set card back to initial state
+                self.candidateImageView.transform = CGAffineTransform.identity
+                self.candidateImageView.center = cardInitialCenter
             }
             
         } // else if
         
     } // didPanImage
-    
-    @objc func resetCard(sender: UITapGestureRecognizer){
-        UIView.animate(withDuration: 0.2, animations: {
-            self.candidateImageView.center = self.view.center
-            self.candidateImageView.transform = CGAffineTransform.identity
-        })
-    }
     
     /*
     // MARK: - Navigation
