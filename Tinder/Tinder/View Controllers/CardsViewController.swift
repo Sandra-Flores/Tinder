@@ -21,6 +21,9 @@ class CardsViewController: UIViewController {
     var negativeDivisor: CGFloat!
     var trueDivisor: CGFloat!
     
+    var swippingRight = false
+    var swippingLeft = false
+    
     @IBOutlet weak var candidateImageView: UIImageView!
     @IBOutlet weak var actionButtonsImageView: UIImageView!
     
@@ -61,38 +64,38 @@ class CardsViewController: UIViewController {
             
         } else if sender.state == .changed {
             
-            if velocity.y < 0 && velocity.x < 0{
+            if velocity.y < 0 && velocity.x < 0{ // move left
                 candidateImageView.center = CGPoint(x: cardInitialCenter.x + translation.x, y: cardInitialCenter.y)
                 cardView.center = CGPoint(x: view.center.x + translation.x , y: cardView.center.y + translation.y)
                 cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/trueDivisor)
-            }else{
+                
+                swippingRight = false
+                swippingLeft = true
+                
+            }else{ // move right
                 candidateImageView.center = CGPoint(x: cardInitialCenter.x + translation.x, y: cardInitialCenter.y)
                 cardView.center = CGPoint(x: view.center.x + translation.x , y: cardView.center.y + translation.y)
                 cardView.transform = CGAffineTransform(rotationAngle: xFromCenter/trueDivisor)
+                
+                swippingRight = true
+                swippingLeft = false
             }
-            
-
             
         } else if sender.state == .ended {
             
-            if( translation.x > 50 ){ // move right
-                
+            if( translation.x > 110 && swippingRight ){ // move right
                 UIView.animate(withDuration: 0.3) {
                     self.candidateImageView.center = self.imageRight
                 }
-                
-                // set card back to initial state
-//                self.candidateImageView.transform = CGAffineTransform.identity
-//                self.candidateImageView.center = cardInitialCenter
-                
-            }else{ // move left
+            }
+            else if (translation.x < -100 && swippingLeft) { // move left
                 UIView.animate(withDuration: 0.3) {
                     self.candidateImageView.center = self.imageLeft
                 }
-                
-                // set card back to initial state
-//                self.candidateImageView.transform = CGAffineTransform.identity
-//                self.candidateImageView.center = cardInitialCenter
+            }
+            else{ // set card back to initial state
+                self.candidateImageView.transform = CGAffineTransform.identity
+                self.candidateImageView.center = cardInitialCenter
             }
             
         } // else if
