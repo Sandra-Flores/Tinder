@@ -28,6 +28,7 @@ class CardsViewController: UIViewController {
     
     @IBOutlet weak var candidateImageView: UIImageView!
     @IBOutlet weak var actionButtonsImageView: UIImageView!
+    @IBOutlet weak var topActionButtonsImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,20 @@ class CardsViewController: UIViewController {
         onTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.goToProfile(sender:)))
         candidateImageView.addGestureRecognizer(onTapGesture)
         candidateImageView.isUserInteractionEnabled = true
+        
+        onTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.resetCardView(sender:)))
+        topActionButtonsImageView.addGestureRecognizer(onTapGesture)
+        topActionButtonsImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc func resetCardView(sender: UIPanGestureRecognizer){
+        
+        // centers image (x,y)
+        self.candidateImageView.center =
+            CGPoint(x: cardInitialCenter.x, y: cardInitialCenter.y)
+        
+        // rotates image to initial state
+        self.candidateImageView.transform = CGAffineTransform.identity
     }
     
     @IBAction func didPanImage(_ sender: UIPanGestureRecognizer) {

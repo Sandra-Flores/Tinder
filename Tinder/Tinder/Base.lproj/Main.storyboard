@@ -49,6 +49,7 @@
                     </view>
                     <connections>
                         <outlet property="candidateImageView" destination="NKS-II-f2i" id="fVH-cc-AAO"/>
+                        <outlet property="topActionButtonsImageView" destination="CWq-ci-UUH" id="dTT-aX-lhN"/>
                         <segue destination="drr-yu-AKF" kind="presentation" identifier="segueToProfile" id="4VA-es-Fu5"/>
                     </connections>
                 </viewController>
