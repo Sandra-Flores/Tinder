@@ -20,8 +20,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         onTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.goToHomePage(sender:)))
-        candidateImageView.addGestureRecognizer(onTapGesture)
-        candidateImageView.isUserInteractionEnabled = true
+        navBar.addGestureRecognizer(onTapGesture)
+        navBar.isUserInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
